@@ -1,16 +1,19 @@
-# This is a sample Python script.
+import time
+from configs import TICKER, AGENT_LOOP_SECONDS
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+# from agent.trading_agent import TradingAgent
 
+def main():
+    print(f"Starting trading agent for {TICKER}")
+    # agent = TradingAgent(ticker=TICKER)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+    while True:
+        try:
+            print(f"\n=== Agent Loop Start: {time.ctime()} ===")
+        except Exception as e:
+            print(f"Error during analysis: {e}")
 
+        time.sleep(AGENT_LOOP_SECONDS)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    main()
