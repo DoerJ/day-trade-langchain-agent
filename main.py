@@ -1,15 +1,16 @@
 import time
 from configs import TICKER, AGENT_LOOP_SECONDS
-
-# from agent.trading_agent import TradingAgent
+from agent.trading_agent import TradingAgent
 
 def main():
     print(f"Starting trading agent for {TICKER}")
-    # agent = TradingAgent(ticker=TICKER)
+    # Initialize the trading agent with the specified ticker
+    agent = TradingAgent(ticker=TICKER)
 
     while True:
         try:
             print(f"\n=== Agent Loop Start: {time.ctime()} ===")
+            agent.run()
         except Exception as e:
             print(f"Error during analysis: {e}")
 
