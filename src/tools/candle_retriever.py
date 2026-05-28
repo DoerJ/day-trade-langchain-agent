@@ -1,13 +1,13 @@
 import finnhub
-import datetime from datetime
+from datetime import datetime
 from langchain.tools import tool
 
 from configs import FINNHUB_API_KEY
 
 client = finnhub.Client(api_key=FINNHUB_API_KEY)
 
-@tool
-def candle_retriever(ticker: str, timestamp: str, resolution: str = "1") -> dict | None:
+# @tool
+def candle_retriever(ticker: str, resolution: str = "1") -> dict:
     """
     Fetch the OHLCV candle at a specific timestamp using Finnhub.
 
@@ -17,9 +17,9 @@ def candle_retriever(ticker: str, timestamp: str, resolution: str = "1") -> dict
         resolution: Candle width — 1, 5, 15, 30, 60, D, W, M
 
     Returns:
-        A dict with open/high/low/close/volume for the matching candle, or None.
+        A dict with open/high/low/close/volume for the matching candle
     """
-    target_dt = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
+    target_dt = datetime.strptime(datetime.now(), "%Y-%m-%d %H:%M:%S")
     target_unix = int(target_dt.timestamp())
 
     # Fetch a window around the target (±1 day gives enough candles to find the match)
@@ -52,4 +52,6 @@ def candle_retriever(ticker: str, timestamp: str, resolution: str = "1") -> dict
     for t, *_ in candles[:5]:
         print(f"  {datetime.fromtimestamp(t).strftime('%Y-%m-%d %H:%M:%S')}")
     return None
+
+
     

@@ -1,4 +1,7 @@
 .idea/
-trading-env/
-model/
+trading-venv/
+models/
+yolov8n.pt
+src/dataset
 .env
+**/.DS_Store
