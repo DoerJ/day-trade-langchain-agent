@@ -71,10 +71,11 @@ class TradingAgent:
                 candlestick_data=RunnableLambda(lambda x: candle_retriever.invoke({
                     "ticker": self.ticker
                 }))
+            )
             | RunnablePassthrough.assign(
                 # Save candles to CSV and pass the CSV path forward
                 candle_csv_path=RunnableLambda(lambda x: save_candles_to_csv.invoke({
-                    "candlestick": x["candlestick_data"]
+                    "candlestick": x["candlestick_data"]["candles"]
                 }))
             )
             | RunnablePassthrough.assign(

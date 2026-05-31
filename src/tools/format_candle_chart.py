@@ -39,10 +39,10 @@ def format_candle_chart_from_csv(csv_path: str):
         type="candle",
         style="charles",        # black/white candles — best for the YOLO model
         # volume=True,            # include volume bars at the bottom
-        figsize=(12, 8),        # wider = more candles visible
+        figsize=(40.96, 40.96), # 20.48 inches * 100 dpi = 2048px
         savefig=dict(
             fname=out_path,
-            dpi=150,            # higher dpi = clearer image
+            dpi=100,            # 20.48 inches * 100 dpi = 2048px
             bbox_inches="tight"
         )
     )

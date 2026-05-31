@@ -19,17 +19,23 @@ def save_candles_to_csv(candlestick, filename="candle_data.csv"):
     output_folder = os.path.join(os.path.dirname(__file__), '../dataset')
     os.makedirs(output_folder, exist_ok=True)
     csv_path = os.path.join(output_folder, filename)
-    fieldnames = ["timestamp", "open", "high", "low", "close", "volume"]
+    fieldnames = ["timestamp", "volume", "high", "low", "open", "close"]
     write_header = not os.path.exists(csv_path)
 
-    # Normalize input to a list of dicts
     if isinstance(candlestick, dict):
+        # Append single candlestick
+        mode = "a"
         candlesticks = [candlestick]
+        write_header = not os.path.exists(csv_path)
     elif isinstance(candlestick, list):
+        # Overwrite with list of candlesticks
+        mode = "w"
         candlesticks = candlestick
+        write_header = True
     else:
         raise ValueError("candlestick must be a dict or list of dicts")
-    with open(csv_path, "a", newline="") as csvfile:
+
+    with open(csv_path, mode, newline="") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         if write_header:
             writer.writeheader()
