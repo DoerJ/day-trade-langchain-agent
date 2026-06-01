@@ -34,7 +34,7 @@ def detect_pattern_from_chart(chart_path: str):
     # model.overrides['agnostic_nms'] = False  # NMS class-agnostic
     # model.overrides['max_det'] = 1000  # maximum number of detections per image
 
-    results = model.predict("src/dataset/candle_chart.png", conf=0.2)
+    results = model.predict("src/dataset/candle_chart.png", conf=0.23)
     boxes = results[0].boxes
 
     # Restore original torch.load

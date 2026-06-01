@@ -45,7 +45,16 @@ async def notify_trading_signal(
     """
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    direction = "BULLISH" if signal == "UP" else "BEARISH"
+
+    # Normalize signal input and determine direction. Gracefully handle unknown values.
+    signal_str = str(signal).upper() if signal is not None else ""
+    if signal_str == "UP":
+        direction = "BULLISH"
+    elif signal_str == "DOWN":
+        direction = "BEARISH"
+    else:
+        direction = "NEUTRAL"
+        logger.warning("Unrecognized trading signal '%s' for asset %s", signal, asset)
 
     lines = [
         "",
@@ -54,6 +63,11 @@ async def notify_trading_signal(
         f"<b>Confidence score  :</b> {conf_score:.2%}",
         f"<b>Time  :</b> {timestamp}",
     ]
+
+    if direction == "NEUTRAL":
+        lines.append("<b>Note:</b> Signal not recognized or not actionable. No trade recommended.")
+        logger.info("Neutral signal for %s — skipping Telegram notification.", asset)
+        return False
 
     message = "\n".join(lines)
     return await send_telegram_message(message)

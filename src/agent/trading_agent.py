@@ -11,45 +11,6 @@ from src.tools.candle_retriever import candle_retriever
 from src.tests import MOCK_CANDLE
 
 
-# class TradingAnalysisChain(Chain):
-#     input_keys = ["ticker", "market_status", "candle_text"]
-#     output_keys = ["signal", "analysis"]
-
-#     def __init__(self, llm, retriever, prompt_template: PromptTemplate):
-#         super().__init__()
-#         self.llm = llm
-#         self.retriever = retriever
-#         self.prompt_template = prompt_template
-
-#     def _call(self, inputs: dict) -> dict:
-#         ticker = inputs["ticker"]
-#         market_status = inputs["market_status"]
-#         candle_text = inputs["candle_text"]
-
-#         retrieved_docs = self.retriever.get_relevant_documents(candle_text)
-#         retrieved_text = "\n\n".join(
-#             f"---\n{doc.page_content}" for doc in retrieved_docs
-#         )
-
-#         prompt = self.prompt_template.format(
-#             ticker=ticker,
-#             market_status=market_status,
-#             candle_data=candle_text,
-#             retrieved_docs=retrieved_text,
-#         )
-
-#         raw_answer = self.llm.predict(prompt)
-#         normalized = raw_answer.strip().lower()
-#         if "buy" in normalized:
-#             signal = "buy"
-#         elif "sell" in normalized:
-#             signal = "sell"
-#         else:
-#             signal = "hold"
-
-#         return {"signal": signal, "analysis": raw_answer}
-
-
 class TradingAgent:
     def __init__(self, ticker):
         self.ticker = ticker

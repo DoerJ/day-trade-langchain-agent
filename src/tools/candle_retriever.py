@@ -23,8 +23,8 @@ def candle_retriever(ticker: str) -> dict:
 
 	url = f"{YAHOO_FINANCE_QUERY_API}/{ticker}"
 	params = {
-		# "period1": midnight,
-		# "period2": now,
+		"period1": midnight,
+		"period2": now,
 		"interval": "1m",
 		"includePrePost": "false"
 	}

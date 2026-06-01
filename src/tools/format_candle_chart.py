@@ -38,7 +38,7 @@ def format_candle_chart_from_csv(csv_path: str):
         df,
         type="candle",
         style="charles",        # black/white candles — best for the YOLO model
-        # volume=True,            # include volume bars at the bottom
+        volume=True,             # include volume bars at the bottom
         figsize=(40.96, 40.96), # 20.48 inches * 100 dpi = 2048px
         savefig=dict(
             fname=out_path,

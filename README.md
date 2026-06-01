@@ -36,6 +36,15 @@ src/
    ```
 3. Configure your API keys in `src/configs/`
 
+
+## Sample Candlestick Chart
+
+Below is a sample generated candlestick chart:
+
+<p align="center">
+  <img src="src/dataset/candle_chart.png" alt="Sample Candlestick Chart" width="480"/>
+</p>
+
 ## Usage
 
 - **Retrieve Candles:**
