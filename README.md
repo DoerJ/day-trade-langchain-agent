@@ -1,6 +1,6 @@
 # Day Trade LangChain Agent
 
-A modular Python toolkit for retrieving, analyzing, visualizing, and acting on financial candlestick data using Yahoo Finance, deep learning (YOLO), and Telegram notifications. Designed for day trading research and automation.
+An AI agent built on the LangChain framework for retrieving, analyzing, visualizing, and acting on financial candlestick data. It integrates Yahoo Finance data retrieval, deep learning (YOLO) pattern detection, and Telegram notifications to support day trading research and automation.
 
 ## Features
 

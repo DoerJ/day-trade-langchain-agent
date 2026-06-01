@@ -28,7 +28,7 @@ class TradingAgent:
         """
         chain = (
             RunnablePassthrough.assign(
-                # Retrieve candlestick data (mocked for now)
+                # Retrieve candlestick data
                 candlestick_data=RunnableLambda(lambda x: candle_retriever.invoke({
                     "ticker": self.ticker
                 }))
