@@ -73,6 +73,19 @@ Below is a sample generated candlestick chart:
   notify_signal_sync('UP', 0.95, 'AAPL')
   ```
 
+## Sample Signal Output
+
+Example Telegram message (HTML) sent by the agent:
+
+```
+<b>Asset :</b> AAPL
+<b>Signal:</b> UP (BULLISH)
+<b>Confidence score  :</b> 95.00%
+<b>Time  :</b> 2026-05-31 15:45:00
+```
+
+When the signal is unrecognized, the agent will skip sending a notification and log a warning.
+
 ## Notes
 - Yahoo Finance API is rate-limited and may block frequent requests.
 - YOLO model weights must be placed in `models/yolo/best.pt`.
