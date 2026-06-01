@@ -42,7 +42,7 @@ src/
 Below is a sample generated candlestick chart:
 
 <p align="center">
-  <img src="src/dataset/candle_chart.png" alt="Sample Candlestick Chart" width="480"/>
+  <img src="test_chart.png" alt="Sample Candlestick Chart" width="480"/>
 </p>
 
 ## Usage
