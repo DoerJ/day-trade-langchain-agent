@@ -10,6 +10,13 @@ An AI agent built on the LangChain framework for retrieving, analyzing, visualiz
 - **Signal Notification**: Sends trading signals to Telegram chats.
 - **CSV Utilities**: Save and manage candlestick data in CSV format.
 
+## Model
+
+- Model: YOLOv8s
+- Huggingface repo: https://huggingface.co/foduucom/stockmarket-future-prediction
+- Description: The YOLOv8s Stock Market future trends prediction model is an object detection model based on the YOLO (You Only Look Once) framework. It is designed to detect various chart patterns in real-time stock market trading video data.
+- Download: Run `hf_hub_download.py` to download the model to local environment
+
 ## Directory Structure
 
 ```
