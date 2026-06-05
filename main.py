@@ -1,9 +1,13 @@
 import time
+
+from src.utils.logger import Logger
 from src.configs import TICKER, AGENT_LOOP_SECONDS
 from src.agent.trading_agent import TradingAgent
 
+logger = Logger(__name__)
+
 def main():
-    print(f"Starting trading agent for {TICKER}")
+    logger.info(f"Starting trading agent for {TICKER}")
     # Initialize the trading agent with the specified ticker
     agent = TradingAgent(ticker=TICKER)
 

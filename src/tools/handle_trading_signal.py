@@ -1,21 +1,19 @@
 import asyncio
-import logging
 from datetime import datetime
 from enum import Enum
 from langchain.tools import tool
 import telegram
 
 from src.configs import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+from src.utils.logger import Logger
 
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logger = Logger(__name__)
 
 async def send_telegram_message(message: str) -> bool:
     """Send a message to the configured Telegram chat. Returns True on success."""
     try:
         bot = telegram.Bot(token=TELEGRAM_BOT_TOKEN)
-        print(f"Sending Telegram message to chat ID {TELEGRAM_CHAT_ID}:\n{message}")
+        logger.info(f"Sending Telegram message to chat ID {TELEGRAM_CHAT_ID}:\n{message}")
         await bot.send_message(
             chat_id=TELEGRAM_CHAT_ID,
             text=message,

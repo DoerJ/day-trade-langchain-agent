@@ -1,14 +1,20 @@
+import os
 import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
+
 import mplfinance as mpf
 from langchain.tools import tool
+
+from src.utils.logger import Logger
+logger = Logger(__name__)
 
 @tool
 def format_candle_chart_from_csv(csv_path: str):
     """
     Reads OHLCV data from a CSV file and generates a candlestick chart saved as PNG.
     """
+    logger.info(f"Formatting candle chart from CSV.")
     # 1. Load CSV
     df = pd.read_csv(csv_path)
 
@@ -29,8 +35,8 @@ def format_candle_chart_from_csv(csv_path: str):
     # 4. Sort oldest → newest (required)
     df = df.sort_index()
 
+    logger.info(f"Candle chart data loaded and formatted. Number of candles: {len(df)}")
     # 5. Plot and save as PNG
-    import os
     output_folder = os.path.join(os.path.dirname(__file__), '../dataset')
     os.makedirs(output_folder, exist_ok=True)
     out_path = os.path.join(output_folder, 'candle_chart.png')
@@ -46,4 +52,5 @@ def format_candle_chart_from_csv(csv_path: str):
             bbox_inches="tight"
         )
     )
+    logger.info(f"Candle chart saved.")
     return out_path

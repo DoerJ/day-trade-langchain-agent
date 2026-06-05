@@ -3,6 +3,9 @@ import time
 from langchain.tools import tool
 
 from src.configs import YAHOO_FINANCE_QUERY_API
+from src.utils.logger import Logger
+
+logger = Logger(__name__)
 
 @tool
 def candle_retriever(ticker: str) -> dict:
@@ -59,7 +62,7 @@ def candle_retriever(ticker: str) -> dict:
 			"candles": candles
 		}
 	except Exception as e:
-		print(f"Error retrieving Yahoo Finance candles: {e}")
+		logger.error(f"Error retrieving Yahoo Finance candles: {e}")
 		return None
 
 

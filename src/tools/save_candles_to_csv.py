@@ -5,6 +5,9 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 import csv
 from langchain.tools import tool
 from tests import MOCK_CANDLE
+from src.utils.logger import Logger
+
+logger = Logger(__name__)
 
 @tool
 def save_candles_to_csv(candlestick, filename="candle_data.csv"):
@@ -16,6 +19,7 @@ def save_candles_to_csv(candlestick, filename="candle_data.csv"):
     Returns:
         The full path to the saved CSV file.
     """
+    logger.info(f"Saving candles to CSV.")
     output_folder = os.path.join(os.path.dirname(__file__), '../dataset')
     os.makedirs(output_folder, exist_ok=True)
     csv_path = os.path.join(output_folder, filename)

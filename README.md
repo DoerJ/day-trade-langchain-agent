@@ -32,6 +32,7 @@ src/
     detect_pattern_from_chart.py# YOLO-based pattern detection
     handle_trading_signal.py    # Telegram notification
     save_candles_to_csv.py      # CSV utilities
+  utils/                # Utils helper tools
 ```
 
 ## Setup

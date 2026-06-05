@@ -4,6 +4,9 @@ import cv2
 from ultralyticsplus import YOLO
 from langchain.tools import tool
 
+from src.utils.logger import Logger
+logger = Logger(__name__)
+
 # Patch for PyTorch 2.6+ to allow custom model loading
 try:
     from ultralytics.nn.tasks import DetectionModel
@@ -34,21 +37,21 @@ def detect_pattern_from_chart(chart_path: str):
     # model.overrides['agnostic_nms'] = False  # NMS class-agnostic
     # model.overrides['max_det'] = 1000  # maximum number of detections per image
 
-    results = model.predict("src/dataset/candle_chart.png", conf=0.23)
+    results = model.predict("src/dataset/candle_chart.png", conf=0.25)
     boxes = results[0].boxes
 
     # Restore original torch.load
     torch.load = orig_torch_load
 
     if len(boxes) == 0:
-        print("No pattern detected")
+        logger.warning("No pattern detected")
         return None, None
     else:
         # Pick the rightmost box = most recent signal
         idx = torch.argmax(boxes.xyxy[:, 2]).item()
         label = model.names[int(boxes[idx].cls[0])]
         conf  = float(boxes[idx].conf[0])
-        print(f"Signal: {label.upper()} | Confidence: {conf:.1%}")
+        logger.info(f"Signal: {label.upper()} | Confidence: {conf:.1%}")
         return {
             "trend": label.upper(),
             "conf_score": conf
